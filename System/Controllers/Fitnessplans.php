@@ -554,5 +554,117 @@ use System\MainController;
             die();
            }
         }
+
+          /**
+         * Add new plan to users list. It can do only logged in user. 
+         *
+         * @return void
+         */
+        public function addplantouserplans()
+        {
+            header('Access-Control-Allow-Origin: *');
+             //header('Content-Type: application/json');
+            header('Access-Control-Allow-Methods: POST');
+            header('Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+            $data = [
+                'ID_fitness_plan' => ''
+            ];
+
+            $dataFeedback = [
+                'message' => '',
+                'ID_fitness_plan_err' => ''
+            ];
+            if($_SERVER['REQUEST_METHOD'] == 'POST' && isLogged())
+            {
+                $dataJson = file_get_contents("php://input");
+                $dataJson = json_decode($dataJson);
+                if(isset($dataJson->data->ID_fitness_plan) && !empty($dataJson->data->ID_fitness_plan) && is_numeric($dataJson->data->ID_fitness_plan))
+                {
+                    $newIDFitnessPlan = trim(htmlspecialchars($dataJson->data->ID_fitness_plan));
+                }
+                else
+                {
+                    $dataFeedback['message'] = 'Proszę uzupełnić pola';
+                    $dataFeedback['ID_fitness_plan_err'] = 'Proszę wprowadzić ID planu';
+                    echo json_encode($dataFeedback);
+                    die();
+                }
+                
+                $data = [
+                    'ID_fitness_plan' => $newIDFitnessPlan
+                ];
+
+                if(empty($dataFeedback['ID_fitness_plan_err']))
+                {
+                    if($this->fitnessPlanModel->signUsersToFitnessPlan($data['ID_fitness_plan']))
+                    {
+                        $dataFeedback['message'] = 'Plan został dodany do zbiorów użytkownika';
+                        http_response_code(201);
+                        $dataJson = json_encode($dataFeedback);
+                        echo $dataJson;
+                    }
+                    else
+                    {
+                        $dataFeedback['message'] = 'Wystąpił błąd dołączania do nowego planu';
+                        http_response_code(200);
+                        $dataJson = json_encode($dataFeedback);
+                        die();
+                    }
+                }
+            }
+        }
+
+        /**
+         * Delete fitness plan form user set
+         *
+         * @param [type] $ID_fitness_plan - fitness plan
+         * @return void
+         */
+        public function deletefitnessplanfromuser($ID_fitness_plan)
+        {
+            header('Access-Control-Allow-Origin: *');
+            //header('Content-Type: application/json');
+           header('Access-Control-Allow-Methods: DELETE');
+           header('Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+
+           if($_SERVER['REQUEST_METHOD'] == 'DELETE' && isLogged())
+           {
+               if(is_numeric($ID_fitness_plan))
+               {
+                   if($this->fitnessPlanModel->deleteFitnessPlanFromUser($ID_fitness_plan))
+                   {
+                       $dataFeedback['message'] = 'Plan został poprawnie usunięty z zapisanych planów użytkownika';
+                       $dataFeedback['status'] = 'success';
+                       http_response_code(200);
+                       $dataJson = json_encode($dataFeedback);
+                       echo $dataJson;
+                   }
+                   else
+                   {
+                       $dataFeedback['message'] = 'Wystąpił błąd podczas usuwania planu';
+                       $dataFeedback['status'] = 'failed';
+                       http_response_code(200);
+                       $dataJson = json_encode($dataFeedback);
+                       die();
+                   }
+               }
+               else
+               {
+                $dataFeedback['message'] = 'ID jest niepoprawne';
+                $dataFeedback['status'] = 'failed';
+                http_response_code(200);
+                $dataJson = json_encode($dataFeedback);
+                die();
+               }
+           }
+           else
+           {
+            $dataFeedback['message'] = 'Używasz niedozwolonej metody lub nie jesteś zalogowany';
+            $dataFeedback['status'] = 'failed';
+            http_response_code(200);
+            $dataJson = json_encode($dataFeedback);
+            die();
+           }
+        }
     }
 ?>

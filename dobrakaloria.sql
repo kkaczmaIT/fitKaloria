@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `DISHES`
 (
   `ID` INTEGER PRIMARY KEY AUTO_INCREMENT UNIQUE,
   `name` VARCHAR(30),
-  `ID_author`  INTEGER,
   `amount_calories` FLOAT,
   `amount_portion` INTEGER,
   `recommend_portion` INTEGER

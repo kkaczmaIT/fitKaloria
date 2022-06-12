@@ -149,7 +149,35 @@
         }
 
         //INSERT INTO ID FP check if exists, check if record not exists create
+        public function signUsersToFitnessPlan($ID_fitness_plan)
+        {
+            $this->db->loadQuery('INSERT INTO USERS_FITNESS_PLAN (ID_fitness_plan, ID_user) VALUES(:ID_fitness_plan, :ID_user)');
+            $this->db->bind(':ID_fitness_plan', $ID_fitness_plan);
+            $this->db->bind(':ID_user', $_SESSION['user_id']);
+            if($this->db->executeQuery())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        public function deleteFitnessPlanFromUser($ID_fitness_plan)
+        {
+            $this->db->loadQuery('DELETE FROM USERS_FITNESS_PLAN WHERE ID_fitness_plan=:_ID_fitness_plan AND ID_user=:_ID_user');
+            $this->db->bind(':_ID_fitness_plan', $ID_fitness_plan);
+            $this->db->bind(':_ID_user', $_SESSION['user_id']);
+            if($this->db->executeQuery())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 ?>
