@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `INGREDIENTS`
   `carbohydrates` FLOAT,
   `fat` FLOAT,
   `fat_full` FLOAT,
-  `fat_uunfill` FLOAT
+  `fat_unfill` FLOAT
 );
 
 CREATE INDEX IF NOT EXISTS `INGREDIENTS_INDEX` ON `INGREDIENTS`(`ID`, `name`);

@@ -1,0 +1,811 @@
+{
+	"info": {
+		"_postman_id": "3430decc-7230-42ed-96e1-254d5da11cc3",
+		"name": "fitKaloria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21221472"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "http://localhost/fitKaloria/users/registerUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"login\": \"testowyuser6\",\r\n        \"email\": \"user6@domena.pl\",\r\n        \"firstname\": \"Tomasz\",\r\n        \"lastname\": \"Testowy\",\r\n        \"password\": \"password12345\",\r\n        \"password_confirm\": \"password12345\",\r\n        \"weight\": 77.8\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/users/registerUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"users",
+								"registerUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/users/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"login\": \"testowyuser4\",\r\n        \"password\": \"password1234\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/users/editUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"password\": \"\",\r\n        \"password_confirm\": \"\",\r\n        \"weight\": \"79.0\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/users/editUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"users",
+								"editUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/users/6",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Newsletters",
+			"item": [
+				{
+					"name": "http://localhost/fitKaloria/newsletters/add",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/newsletters/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"newsletters",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/newsletters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/newsletters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"newsletters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/newsletters/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"is_agree\": 1\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/newsletters/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"newsletters",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FitnessPlans",
+			"item": [
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/authorfitnessplans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/authorfitnessplans/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"authorfitnessplans",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"Dieta wysokobiałkowa\",\r\n        \"type\": \"diety krótkoterminowe\",\r\n        \"tags\": \"wysoka zawartość białka, mało tłuszczu\",\r\n        \"description\": \"Dieta na okres 5 tygodni. Nie wolno przedłużyć terminu stosowania\",\r\n        \"daily_protein\": 200,\r\n        \"daily_carbohydrates\": 250,\r\n        \"daily_fat\": 30,\r\n        \"num_dishes\": 5 \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"Dieta wysokobiałkowa\",\r\n        \"type\": \"diety krótkoterminowe\",\r\n        \"tags\": \"wysoka zawartość białka, mało tłuszczu\",\r\n        \"description\": \"Dieta na okres 5 tygodni. Nie wolno przedłużyć terminu stosowania\",\r\n        \"daily_protein\": 200,\r\n        \"daily_carbohydrates\": 250,\r\n        \"daily_fat\": 30,\r\n        \"num_dishes\": 5 \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/edit/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"edit",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/delete/4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/userfitnessplans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/userfitnessplans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"userfitnessplans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/addplantouserplans",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"ID_fitness_plan\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/addplantouserplans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"addplantouserplans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/fitnessplans/deletefitnessplanfromuser/2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/fitnessplans/deletefitnessplanfromuser/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"fitnessplans",
+								"deletefitnessplanfromuser",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dishes",
+			"item": [
+				{
+					"name": "http://localhost/fitKaloria/dishes/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/userdishesdaymeal/2022/06/12/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/userdishesdaymeal/2022/06/12/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"userdishesdaymeal",
+								"2022",
+								"06",
+								"12",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/fitnessplandishes/1/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/fitnessplandishes/1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"fitnessplandishes",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"Barszcz\",\r\n        \"amount_calories\": 600,\r\n        \"amount_portion\": 4,\r\n        \"recommend_portion\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/adddishday",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"ID_dishes\": 3,\r\n        \"ID_meal\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/adddishday",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"adddishday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/adddishtofitnessplan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"ID_dishes\": 3,\r\n        \"ID_meal\": 2,\r\n        \"ID_fitness_plan\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/adddishtofitnessplan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"adddishtofitnessplan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/edit/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"Kiełbasa\",\r\n        \"amount_calories\": 320,\r\n        \"amount_portion\": 4,\r\n        \"recommend_portion\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/deletedish/4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/deletedish/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"deletedish",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/deletedishday/2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/deletedishday/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"deletedishday",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/dishes/deleteplandish/2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/dishes/deleteplandish/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"dishes",
+								"deleteplandish",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ingredients",
+			"item": [
+				{
+					"name": "http://localhost/fitKaloria/ingredients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/dishingredients/3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/dishingredients/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"dishingredients",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"Kukurydza\",\r\n        \"calories\": 120,\r\n        \"protein\": 10,\r\n        \"carbohydrates\": 20,\r\n        \"fat\": 1,\r\n        \"fat_full\": 1,\r\n        \"fat_unfill\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/adddishingredient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"ID_dishes\": 3,\r\n        \"ID_ingredients\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/adddishingredient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"adddishingredient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/edit/2",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"pomidor\",\r\n        \"calories\": 4,\r\n        \"protein\": 1,\r\n        \"carbohydrates\": 1,\r\n        \"fat\": 1,\r\n        \"fat_full\": 1,\r\n        \"fat_unfill\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/edit/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"edit",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/delete/4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/fitKaloria/ingredients/delete/3/3",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/fitKaloria/ingredients/delete/3/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"fitKaloria",
+								"ingredients",
+								"delete",
+								"3",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

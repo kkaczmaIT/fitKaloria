@@ -2,7 +2,7 @@
     namespace System\Models;
     use System\Database;
     
-    class Dish
+    class Ingredient
     {
         private $db;
         private $dbSql;
@@ -18,13 +18,13 @@
          *
          * @return [array/bool] array/false
          */
-        public function getDishes()
+        public function getIngredients()
         {
-            $this->db->loadQuery('SELECT ID, name, amount_calories, amount_portion, recommend_portion FROM DISHES');
-            $dishes = $this->db->resultSet();
+            $this->db->loadQuery('SELECT ID, name, calories, protein, carbohydrates, fat, fat_full, fat_unfill FROM INGREDIENTS');
+            $ingredients = $this->db->resultSet();
             if($this->db->rowCount() >= 0)
             {
-                return $dishes;
+                return $ingredients;
             }
             else
             {
@@ -32,14 +32,14 @@
             }
         }
 
-        public function getDish($ID)
+        public function getIngredient($ID)
         {
-            $this->db->loadQuery('SELECT ID, name, amount_calories, amount_portion, recommend_portion FROM DISHES WHERE ID=:_ID');
+            $this->db->loadQuery('SELECT ID, name, calories, protein, carbohydrates, fat, fat_full, fat_unfill FROM INGREDIENTS WHERE ID=:_ID');
             $this->db->bind(':_ID', $ID);
-            $dish = $this->db->single();
+            $ingredient = $this->db->single();
             if($this->db->rowCount() > 0)
             {
-                return $dish;
+                return $ingredient;
             }
             else
             {
@@ -48,25 +48,21 @@
         }
         
         /**
-         * Return list of dishes which user add in specific day
+         * Return list of ingredients which dish consist of
          * @param [integer] - $year - year
          * @param [integer] - $month - month
          * @param [integer] - $year - year
          * @return [array/bool] array/false
          */
-        public function getUserDishesFromDay($year, $month, $day, $ID_meal)
+        public function getIngredientsDish($ID_dishes)
         {
-            $this->db->loadQuery('SELECT D.ID, D.name AS dish_name, D.amount_calories, D.amount_portion, D.recommend_portion, M.name AS meal_name FROM DISHES D INNER JOIN DISHES_DAY DD ON D.ID=DD.ID_dishes INNER JOIN MEAL M ON DD.ID_meal=M.ID WHERE year(DD.date)=:_year AND month(DD.date)=:_month AND day(DD.date)=:_day AND DD.ID_user=:_ID_user AND DD.ID_meal=:_ID_meal');
-            $this->db->bind(':_year', $year);
-            $this->db->bind(':_month', $month);
-            $this->db->bind(':_day', $day);
-            $this->db->bind(':_ID_meal', $ID_meal);
-            $this->db->bind(':_ID_user', $_SESSION['user_id']);
-            $userDishes = $this->db->resultSet();
+            $this->db->loadQuery('SELECT I.ID, I.name, I.calories, I.protein, I.carbohydrates, I.fat, I.fat_full, I.fat_unfill FROM INGREDIENTS I INNER JOIN DISHES_INGREDIENTS DI ON I.ID=DI.ID_ingredients WHERE DI.ID_dishes=:_ID_dishes');
+            $this->db->bind(':_ID_dishes', $ID_dishes);
+            $dishIngredients = $this->db->resultSet();
 
-            if($userDishes)
+            if($dishIngredients)
             {
-                return $userDishes;
+                return $dishIngredients;
             }
             else
             {
@@ -74,32 +70,16 @@
             }
         }
 
-        public function getFitnessPlanDishesMealType($ID_fitness_plan, $ID_meal)
+        public function create($name, $calories, $protein, $carbohydrates, $fat, $fat_full, $fat_unfill)
         {
-            $this->db->loadQuery('SELECT D.ID, D.name, D.amount_calories, D.amount_portion, D.recommend_portion FROM DISHES D INNER JOIN FITNESS_PLAN_DISHES_INGREDIENTS FPDI ON D.ID=FPDI.ID_dishes INNER JOIN  FITNESS_PLAN FP ON FPDI.ID_fitness_plan=FP.ID WHERE FPDI.ID_fitness_plan=:_ID_fitness_plan AND FPDI.ID_meal=:_ID_meal');
-            $this->db->bind(':_ID_fitness_plan', $ID_fitness_plan);
-            $this->db->bind(':_ID_meal', $ID_meal);
-            $planDishes = $this->db->resultSet();
-
-            if($this->db->rowCount() >= 0)
-            {
-                return $planDishes;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-      
-
-        public function create($name, $amount_calories, $amount_portion, $recommend_portion)
-        {
-            $this->db->loadQuery('INSERT INTO DISHES (name, amount_calories, amount_portion, recommend_portion) VALUES(:name, :amount_calories, :amount_portion, :recommend_portion)');
+            $this->db->loadQuery('INSERT INTO INGREDIENTS (name, calories, protein, carbohydrates, fat, fat_full, fat_unfill) VALUES(:name, :calories, :protein, :carbohydrates, :fat, :fat_full, :fat_unfill)');
             $this->db->bind(':name', $name);
-            $this->db->bind(':amount_calories', $amount_calories);
-            $this->db->bind(':amount_portion', $amount_portion);
-            $this->db->bind(':recommend_portion', $recommend_portion);
+            $this->db->bind(':calories', $calories);
+            $this->db->bind(':protein', $protein);
+            $this->db->bind(':carbohydrates', $carbohydrates);
+            $this->db->bind(':fat', $fat);
+            $this->db->bind(':fat_full', $fat_full);
+            $this->db->bind(':fat_unfill', $fat_unfill);
 
             if($this->db->executeQuery())
             {
@@ -111,12 +91,11 @@
             }
         }
 
-        public function addDishesDay($ID_dishes, $ID_meal)
+        public function addDishesIngredient($ID_dishes, $ID_ingredients)
         {
-            $this->db->loadQuery('INSERT INTO DISHES_DAY (ID_meal, ID_user, ID_dishes) VALUES(:ID_meal, :ID_user, :ID_dishes)');
-            $this->db->bind(':ID_meal', $ID_meal);
+            $this->db->loadQuery('INSERT INTO DISHES_INGREDIENTS (ID_dishes, ID_ingredients) VALUES(:ID_dishes, :ID_ingredients)');
             $this->db->bind(':ID_dishes', $ID_dishes);
-            $this->db->bind(':ID_user', $_SESSION['user_id']);
+            $this->db->bind(':ID_ingredients', $ID_ingredients);
 
             if($this->db->executeQuery())
             {
@@ -129,30 +108,17 @@
         }
         
 
-        public function addFitnessPlanDishes($ID_dishes, $ID_meal, $ID_fitness_plan)
+       
+        public function edit($name, $calories, $protein, $carbohydrates, $fat, $fat_full, $fat_unfill, $ID)
         {
-            $this->db->loadQuery('INSERT INTO FITNESS_PLAN_DISHES_INGREDIENTS (ID_fitness_plan, ID_dishes, ID_meal) VALUES(:ID_fitness_plan, :ID_dishes, :ID_meal)');
-            $this->db->bind(':ID_meal', $ID_meal);
-            $this->db->bind(':ID_dishes', $ID_dishes);
-            $this->db->bind(':ID_fitness_plan', $ID_fitness_plan);
-
-            if($this->db->executeQuery())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public function edit($name, $amount_calories, $amount_portion, $recommend_portion, $ID)
-        {
-            $this->db->loadQuery('UPDATE DISHES SET name=:name, amount_calories=:amount_calories, amount_portion=:amount_portion, recommend_portion=:recommend_portion WHERE ID=:ID');
+            $this->db->loadQuery('UPDATE INGREDIENTS SET name=:name, calories=:calories, protein=:protein, carbohydrates=:carbohydrates, fat=:fat, fat_full=:fat_full, fat_unfill=:fat_unfill WHERE ID=:ID');
             $this->db->bind(':name', $name);
-            $this->db->bind(':amount_calories', $amount_calories);            
-            $this->db->bind(':amount_portion', $amount_portion);
-            $this->db->bind(':recommend_portion', $recommend_portion);
+            $this->db->bind(':calories', $calories);            
+            $this->db->bind(':protein', $protein);
+            $this->db->bind(':carbohydrates', $carbohydrates);
+            $this->db->bind(':fat', $fat);
+            $this->db->bind(':fat_full', $fat_full);
+            $this->db->bind(':fat_unfill', $fat_unfill);
             $this->db->bind(':ID', $ID);
             if($this->db->executeQuery())
             {
@@ -166,7 +132,7 @@
 
         public function delete($ID)
         {
-            $this->db->loadQuery('DELETE FROM DISHES WHERE ID=:ID');
+            $this->db->loadQuery('DELETE FROM INGREDIENTS WHERE ID=:ID');
             $this->db->bind(':ID', $ID);
             if($this->db->executeQuery())
             {
@@ -178,24 +144,11 @@
             }
         }
 
-        public function deleteDishDay($ID)
+        public function deleteDishIngredient($ID_ingredient, $ID_dish)
         {
-            $this->db->loadQuery('DELETE FROM DISHES_DAY WHERE ID=:_ID');
-            $this->db->bind(':_ID', $ID);
-            if($this->db->executeQuery())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public function deleteFitnessPlanDish($ID)
-        {
-            $this->db->loadQuery('DELETE FROM FITNESS_PLAN_DISHES_INGREDIENTS WHERE ID=:_ID');
-            $this->db->bind(':_ID', $ID);
+            $this->db->loadQuery('DELETE FROM DISHES_INGREDIENTS WHERE ID_dishes=:ID_dishes AND ID_ingredients=:ID_ingredients');
+            $this->db->bind(':ID_dishes', $ID_dish);
+            $this->db->bind(':ID_ingredients', $ID_ingredient);
             if($this->db->executeQuery())
             {
                 return true;

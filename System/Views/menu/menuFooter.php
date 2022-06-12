@@ -1,1 +1,0 @@
-<script async src="<?php echo getenv("CMS_URL"); ?>public/js/menu.js"></script>
