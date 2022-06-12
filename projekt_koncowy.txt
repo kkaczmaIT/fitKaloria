@@ -1,0 +1,116 @@
+//Projekt
+TABLE USERS 
+{
+  ID int [pk, increment]
+  loginU varchar(50)
+  email varchar(100)
+  firstname varchar(30)
+  lastname varchar(60)
+  password varchar(128)
+  weight float
+  created_at timestamp
+}
+
+TABLE FITNESS_PLAN
+{
+  ID int [pk, increment]
+  name varchar(30)
+  ID_author int
+  type string
+  tags string
+  description varchar(300)
+  daily_protein float
+  daily_carbohydrates float
+  daily_fat float
+  num_dishes int
+  energy_aim float
+}
+
+TABLE DISHES
+{
+  ID int [pk, increment]
+  name varchar(80)
+  amount_calories float
+  amount_portion int
+  recommend_portion int
+}
+
+TABLE INGREDIENTS
+{
+  ID int [pk, increment]
+  name varchar(50)
+  calories float
+  protein float
+  carbohydrates float
+  fat float
+  fat_full float
+  fat_unfill float
+}
+
+TABLE DISHES_INGREDIENTS
+{
+  ID int [pk, increment]
+  ID_dishes int
+  ID_ingredients int
+}
+
+TABLE DISHES_DAY
+{
+  ID int [pk, increment]
+  ID_meal int
+  ID_user int
+  ID_dishes int
+  date datetime
+}
+
+TABLE NEWSLETTER
+{
+  ID int [pk, increment]
+  ID_user int
+}
+
+TABLE FITNESS_PLAN_DISHES_INGREDIENTS
+{
+  ID int [pk, increment]
+  ID_fitness_plan int
+  ID_dishes int
+  ID_meal int
+}
+
+TABLE MEAL
+{
+  ID int [pk, increment]
+  name varchar(100)
+}
+
+TABLE USERS_FITNESS_PLAN
+{
+  ID int [pk, increment]
+  ID_fitness_plan int
+  ID_user int
+}
+
+// FITENSS_PLAN - USERS
+Ref: FITNESS_PLAN.ID_author - USERS.ID
+//DISHES - DISHES_INGREDIENTS
+Ref: DISHES.ID < DISHES_INGREDIENTS.ID_dishes
+//DISHES_INGREDIENTS - INGREDIENTS
+Ref: DISHES_INGREDIENTS.ID_ingredients > INGREDIENTS.ID 
+// DISHES_DAY > DISHES_INGREDIENTS
+Ref: DISHES_DAY.ID_dishes > DISHES.ID
+// DISHES DAY > USERS
+Ref: DISHES_DAY.ID_user > USERS.ID
+// NEWSLETTER - USERS
+Ref: NEWSLETTER.ID_user - USERS.ID
+// MEAL < DISHES_DAY
+Ref: MEAL.ID < DISHES_DAY.ID_meal
+// MEAL < FITNESS_PLAN_DISHES_INGREDIENTS
+Ref: MEAL.ID < FITNESS_PLAN_DISHES_INGREDIENTS.ID_meal
+// FITNESS_PLAN_DISHES_INGREDIENTS > ID_fitness_plan
+Ref: FITNESS_PLAN_DISHES_INGREDIENTS.ID_fitness_plan > FITNESS_PLAN.ID
+// FITNESS_PLAN_DISHES_INGREDIENTS > ID_dishes_ingredients
+Ref: FITNESS_PLAN_DISHES_INGREDIENTS.ID_dishes > DISHES.ID
+//USERS_FITNESS_PLAN > USERS
+Ref: USERS_FITNESS_PLAN.ID_user > USERS.ID
+//USERS_FITNESS_PLAN > FITNESS_PLAN
+Ref: USERS_FITNESS_PLAN.ID_fitness_plan > FITNESS_PLAN.ID
