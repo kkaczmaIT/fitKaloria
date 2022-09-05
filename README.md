@@ -12,3 +12,20 @@ App handles connection with database by PDO extension in PHP. Each request is ex
 
 ## Example of requests and answers
 
+### Login
+![login requests](login.png)
+
+### Get user's meals from direct date
+![direct day with user's meals](usermealdaydirectdate.png)
+
+### Get available diethethic plans
+![Available dithethic plans](getfitnessplans.png)
+
+### Editing dishes
+![Editing dishes](editdishes.png)
+
+### Deleting ingredient
+![Deleting ingredient](deleteingredient.png)
+
+### Adding ingredient
+![Adding ingredient](addingingredient.png)
