@@ -7,6 +7,7 @@ App is based on MVC architecture and managment by URL address. Due to REST API e
 ## Technologies
 - PHP
 - MariaDB
+- phpdotenv from Github [repository](https://github.com/vlucas/phpdotenv) 
 
 App handles connection with database by PDO extension in PHP. Each request is executed by set in address suitable controller and his method. Also it need to be suitable protocol of request. In project is set a file for Postman with available requests.
 
